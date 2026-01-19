@@ -1,0 +1,11 @@
+# 忽略 conda 环境文件夹
+.conda/
+env/
+venv/
+
+# 忽略 Python 编译产生的垃圾文件
+__pycache__/
+*.pyc
+
+# 忽略 VS Code 的配置文件夹
+.vscode/
