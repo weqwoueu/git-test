@@ -3,9 +3,18 @@ import time
 import numpy as np
 #创建tensor
 a = torch.arange(16).reshape(4,4)
+a[0,0]=1
+af = torch.arange(16,dtype=torch.float64).reshape(4,4)
+af[0,0]=1.0
+af[1,0]=5.0
+af[2,0]=7.0
+a8 = torch.arange(8,dtype=torch.float64).reshape(2,2,2)
+a8[0,0,0]=1.0
+
 date = torch.tensor([[1,2,3,4,5,6,7,8,9,10],
                      [1,2,3,4,5,6,6,7,8,9]])
 zero = torch.zeros((4,4))
+cleaned_date = date.clone() # 克隆一份新的数据
 z_date = torch.zeros_like(zero)
 r_date = torch.randn_like(zero)
 fdate = date.reshape(-1,20)
@@ -61,3 +70,15 @@ print(c)
 print(e)
 print(d)
 print(f)
+print(a.T) #矩阵转置
+print(a.matmul(b.reshape(4,1))) #矩阵乘法
+print(torch.matmul(a,b.reshape(4,1))) #矩阵乘法
+print(a @ b.reshape(4,1)) #矩阵乘法
+print(af)
+print(af.inverse()) #矩阵求逆
+print(a8)
+print(a8.inverse()) #矩阵维度变换
+print(a8.reshape(1,-1).squeeze())#reshape矩阵变成一行后去掉多余维度
+print(a8.inverse().reshape(1,-1).squeeze())
+print(torch.dot(a8.reshape(1,-1).squeeze(),a8.inverse().reshape(1,-1).squeeze())) #矩阵点积
+print(torch.mm(a8.reshape(2,4),a8.inverse().reshape(2,4).T))#矩阵乘法
